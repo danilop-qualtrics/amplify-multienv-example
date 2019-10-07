@@ -8,6 +8,7 @@ import awsConfig from "./aws-exports";
 import * as mutations from "./graphql/mutations";
 import * as queries from "./graphql/queries";
 import * as subscriptions from "./graphql/subscriptions";
+import Qplugin from "./components/plugins";
 
 Amplify.configure(awsConfig);
 
@@ -88,14 +89,22 @@ class AddTodo extends Component {
 }
 
 class App extends Component {
-  render() {
-    let val = 0;
+  state = {
+    plugin_list: []
+  }
+
+  componentDidMount() {
     fetch('https://twrilvbmpf.execute-api.us-east-2.amazonaws.com/dev/plugins', { mode: 'no-cors'})
     .then(res => res.json())
     .then((data) => {
       val = data;
       console.log("data is = ", data);
+      this.setState({ plugin_list: data })
     })
+  }
+
+  render() {
+
     return (
       <div className="App">
         <h2>Add Todo</h2>
@@ -127,6 +136,7 @@ class App extends Component {
         <div>
           <strong>val</strong>
         </div>
+        <Qplugin qplugins={this.state.plugin_list} />
       </div>
     );
   }
