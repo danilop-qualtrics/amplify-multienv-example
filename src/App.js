@@ -94,12 +94,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://twrilvbmpf.execute-api.us-east-2.amazonaws.com/dev/plugins', { mode: 'no-cors'})
+    fetch('https://twrilvbmpf.execute-api.us-east-2.amazonaws.com/dev/plugins')
     .then(res => res.json())
     .then((data) => {
       console.log("data is = ", data);
       this.setState({ plugin_list: data })
     })
+    .catch(console.log)
   }
 
   render() {
