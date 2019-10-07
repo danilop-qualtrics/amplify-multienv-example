@@ -97,7 +97,6 @@ class App extends Component {
     fetch('https://twrilvbmpf.execute-api.us-east-2.amazonaws.com/dev/plugins', { mode: 'no-cors'})
     .then(res => res.json())
     .then((data) => {
-      val = data;
       console.log("data is = ", data);
       this.setState({ plugin_list: data })
     })
