@@ -89,6 +89,13 @@ class AddTodo extends Component {
 
 class App extends Component {
   render() {
+    let val = 0;
+    fetch('https://twrilvbmpf.execute-api.us-east-2.amazonaws.com/dev/plugins')
+    .then(res => res.json())
+    .then((data) => {
+      val = data;
+      console.log("data is = ", data);
+    })
     return (
       <div className="App">
         <h2>Add Todo</h2>
@@ -117,6 +124,9 @@ class App extends Component {
             );
           }}
         </Connect>
+        <div>
+          <strong>val</strong>
+        </div>
       </div>
     );
   }
